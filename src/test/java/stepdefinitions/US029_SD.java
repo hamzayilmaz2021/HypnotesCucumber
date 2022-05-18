@@ -17,7 +17,7 @@ public class US029_SD {
 
     @When("user types {string} to the email input")
     public void userTypesToTheEmailInput(String arg0) {
-        page.emailInput.sendKeys(arg0);
+        page.emailInput.sendKeys(arg0); //
     }
 
     @When("user types {string} to the password input")
