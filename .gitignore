@@ -1,0 +1,14 @@
+.idea/
+*.iml
+*.ipr
+cmake-build-*/
+*.iws
+out/
+target/
+src/**/resources/images
+src/**/resources/files
+src/**/runners/*
+.idea_modules/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+*.properties
