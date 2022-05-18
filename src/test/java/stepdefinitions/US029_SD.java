@@ -12,7 +12,7 @@ public class US029_SD {
     TherapistRegisterPage page = new TherapistRegisterPage();
     @When("user types {string} to the fullname input")
     public void userTypesToTheFullnameInput(String arg0) {
-        page.nameInput.sendKeys(arg0);
+        page.nameInput.sendKeys(arg0); //
     }
 
     @When("user types {string} to the email input")
