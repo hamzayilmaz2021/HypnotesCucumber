@@ -27,7 +27,8 @@ public class US032_SD {
     @When("user clicks on the {string} link")
     public void userClicksOnTheLink(String text) {
         WebElement element = Driver.getDriver().findElement(By.xpath("//*[contains(text(),'"+text+"')]"));
-        element.click();
+        BrowserUtilities.scrollToElement(element);
+        BrowserUtilities.clickWithJS(element);
     }
 
     @Then("user verifies the url is {string}")
@@ -37,4 +38,13 @@ public class US032_SD {
 
     }
 
+    @When("user accepts the cookies")
+    public void userAcceptsTheCookies() {
+        WebElement acceptButton = Driver.getDriver().findElement(By.xpath("//*[@onClick='acceptCookie()']"));
+        acceptButton.click();
+
+        WebElement closeToolbar = Driver.getDriver().findElement(By.cssSelector(".hide-button"));
+        closeToolbar.click();
+        BrowserUtilities.waitFor(1);
+    }
 }
