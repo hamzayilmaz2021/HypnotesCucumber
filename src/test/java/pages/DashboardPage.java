@@ -8,4 +8,8 @@ public class DashboardPage extends BasePage{
     @FindBy (xpath = "//span[text()='Scheduling']")
     public WebElement schedulingLink;
 
+    @FindBy (xpath = "//span[text() = 'Logout']")
+    public WebElement logoutButton;
+
+
 }

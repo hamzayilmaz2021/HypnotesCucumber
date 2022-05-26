@@ -35,7 +35,6 @@ public class US032_SD {
     public void userVerifiesTheUrlIs(String url) {
         String currentUrl = Driver.getDriver().getCurrentUrl();
         Assert.assertEquals(currentUrl,url);
-
     }
 
     @When("user accepts the cookies")

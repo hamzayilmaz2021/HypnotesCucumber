@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pages.HomePage;
 import utilities.BrowserUtilities;
 import utilities.Driver;
@@ -15,6 +16,15 @@ public class US002_SD {
     @Given("user goes to the {string}")
     public void userGoesToThe(String url) {
         Driver.getDriver().get(url);
+        try{
+            WebElement acceptButton = Driver.getDriver().findElement(By.xpath("//*[@onClick='acceptCookie()']"));
+            acceptButton.click();
+
+            WebElement closeToolbar = Driver.getDriver().findElement(By.cssSelector(".hide-button"));
+            closeToolbar.click();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     @Then("user verifies the titles are visible")
