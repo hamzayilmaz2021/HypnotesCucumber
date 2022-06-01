@@ -6,7 +6,7 @@
 Feature: US_029	As a user, I should be able to check valid and invalid passwords
 
   Background:
-    Given user goes to the "https://qa-test.hypnotes.net/register"
+    Given user goes to the "/register"
     When user types "hamza yilmaz" to the fullname input
     When user types "hamza@gmail.com" to the email input
 

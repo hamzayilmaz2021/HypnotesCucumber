@@ -1,7 +1,7 @@
 Feature: After logging in as User (Therapist), I should be able to see the Settings and Calendar page
 
   Background:
-    Given user goes to the "https://qa-test.hypnotes.net/login"
+    Given user goes to the "/login"
     When user types "therapisthypnotes2020@gmail.com" to the email input on the login page
     When user types "Therapist+tayfa2022" to the password input on the login page
     When user clicks on the login button on the login page

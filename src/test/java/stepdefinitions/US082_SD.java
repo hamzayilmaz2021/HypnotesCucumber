@@ -147,4 +147,14 @@ public class US082_SD {
     }
 
 
+    @Then("user verifies the {string} are visible on the add package page")
+    public void userVerifiesTheAreVisibleOnTheAddPackagePage(String warnings) {
+        String[] array = warnings.split(",");
+
+        for( String s : array){
+            WebElement element = Driver.getDriver().findElement(By.xpath("//*[text() = '"+s+"']"));
+            Assert.assertTrue(element.isDisplayed());
+        }
+
+    }
 }

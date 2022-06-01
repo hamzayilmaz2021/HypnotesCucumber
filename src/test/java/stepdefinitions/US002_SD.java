@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.HomePage;
 import utilities.BrowserUtilities;
+import utilities.ConfigurationReader;
 import utilities.Driver;
 
 public class US002_SD {
@@ -15,7 +16,8 @@ public class US002_SD {
 
     @Given("user goes to the {string}")
     public void userGoesToThe(String url) {
-        Driver.getDriver().get(url);
+        Driver.getDriver().get(ConfigurationReader.getProperty("environment") + url);
+
         try{
             WebElement acceptButton = Driver.getDriver().findElement(By.xpath("//*[@onClick='acceptCookie()']"));
             acceptButton.click();

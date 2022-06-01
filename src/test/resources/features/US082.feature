@@ -1,7 +1,7 @@
 Feature: US_082	As a user, I should be able to create Package in Add New Individual Sessions
 
   Background:
-    Given user goes to the "https://qa-test.hypnotes.net/login"
+    Given user goes to the "/login"
     When user types "therapisthypnotes2020@gmail.com" to the email input on the login page
     When user types "Therapist+tayfa2022" to the password input on the login page
     When user clicks on the login button on the login page
@@ -10,7 +10,6 @@ Feature: US_082	As a user, I should be able to create Package in Add New Individ
     And user clicks on the "Generate Scheduler URL" button
     And user clicks on the "Add New Package" button
     And user waits for "3" seconds
-
 
   Scenario: TC_001
     When user types "3 Aylik Paket" to the name input on the add package page
@@ -37,13 +36,16 @@ Feature: US_082	As a user, I should be able to create Package in Add New Individ
   Scenario Outline: TC_003
     When user types data to the "<inputs>" on the add package page
     When user clicks on the save button on the add package page
-    Then user verifies the "<warnings>" is visible
+    Then user verifies the "<warnings>" are visible on the add package page
     And user logs out of the system
     Examples:
-      | inputs                                                                          | warnings                          |
-      | price=100,duration=60,totalsessions=5,sessioninterval=1,description=Aciklama    | Please enter category name        |
-      | name=3 Aylik,duration=60,totalsessions=5,sessioninterval=1,description=Aciklama | Please enter price                |
-      | name=3 Aylik,price=100,totalsessions=5,sessioninterval=1,description=Aciklama   | Please select or enter a duration |
-      | name=3 Aylik,price=100,duration=60,sessioninterval=1,description=Aciklama       | Please enter total session        |
-      | name=3 Aylik,price=100,duration=60,totalsessions=5,description=Aciklama         | Please enter session interval     |
-      | name=3 Aylik,price=100,duration=60,totalsessions=5,sessioninterval=1            | Please enter package description  |
+      | inputs                                                                          | warnings                                                       |
+      | price=100,duration=60,totalsessions=5,sessioninterval=1,description=Aciklama    | Please enter category name                                     |
+      | name=3 Aylik,duration=60,totalsessions=5,sessioninterval=1,description=Aciklama | Please enter price                                             |
+      | name=3 Aylik,price=100,totalsessions=5,sessioninterval=1,description=Aciklama   | Please select or enter a duration                              |
+      | name=3 Aylik,price=100,duration=60,sessioninterval=1,description=Aciklama       | Please enter total session                                     |
+      | name=3 Aylik,price=100,duration=60,totalsessions=5,description=Aciklama         | Please enter session interval                                  |
+      | name=3 Aylik,price=100,duration=60,totalsessions=5,sessioninterval=1            | Please enter package description                               |
+      | name=3 Aylik,price=100,duration=60,totalsessions=5                              | Please enter session interval,Please enter package description |
+
+
