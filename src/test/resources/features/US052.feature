@@ -6,18 +6,15 @@ Feature: US_052	As a user (therapist) I should be able to add new client
     ### Kayıt limitinin önüne geçmek için, deneme amaçlı oluşturulan client'ları sil.
 
   Background:
-    Given user goes to the "/login"
-    When user types "therapisthypnotes2020@gmail.com" to the email input on the login page
-    When user types "Therapist+tayfa2022" to the password input on the login page
-    When user clicks on the login button on the login page
-
-  Scenario Outline: TC_001 A client should be created with the added information.
-    Given user goes to the "/dashboard/add-client"
+    Given user goes to the "/dashboard/add-client" with "login"
+    When user accepts the cookies
     When user types "<data>" to the "<input_name>" input on add client page
     And user clicks on the add button on the add client page
     And user clicks on the yes button on the add client page
+
+  Scenario Outline: TC_001 A client should be created with the added information.
     And user gets the id of add client from the current url
-    And user goes to the "/dashboard/clients"
+    And user goes to the "/dashboard/clients" with "null"
     Then user verifies the client is added to the clients list
     And user deletes the added client from the clients list
     And user logs out of the system
@@ -32,10 +29,6 @@ Feature: US_052	As a user (therapist) I should be able to add new client
 
 
   Scenario Outline: TC_002 A client should not be created with the missing information.
-    Given user goes to the "/dashboard/add-client"
-    When user types "<data>" to the "<input_name>" input on add client page
-    And user clicks on the add button on the add client page
-    And user clicks on the yes button on the add client page
     And user waits for "5" seconds
     And user verifies the url is "/dashboard/add-client"
     And user logs out of the system

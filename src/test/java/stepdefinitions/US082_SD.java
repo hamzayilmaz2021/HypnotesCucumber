@@ -24,6 +24,7 @@ public class US082_SD {
     @And("user clicks on the {string} button")
     public void userClicksOnTheButton(String text) {
         WebElement element = Driver.getDriver().findElement(By.xpath("//button/*[contains(text(), '"+text+"')]"));
+        BrowserUtilities.waitForClickablility(element,10);
         BrowserUtilities.clickWithJS(element);
     }
 

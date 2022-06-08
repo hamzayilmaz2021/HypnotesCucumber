@@ -1,15 +1,14 @@
+@sprint2 @smoke
 Feature: US_082	As a user, I should be able to create Package in Add New Individual Sessions
 
-  Background:
-    Given user goes to the "/login"
-    When user types "therapisthypnotes2020@gmail.com" to the email input on the login page
-    When user types "Therapist+tayfa2022" to the password input on the login page
-    When user clicks on the login button on the login page
-    And user clicks on the "Services" link
-    And user clicks on the packages link on the services page
-    And user clicks on the "Generate Scheduler URL" button
-    And user clicks on the "Add New Package" button
-    And user waits for "3" seconds
+    Background:
+      Given user goes to the "/dashboard/calendar" with "login"
+      When user accepts the cookies
+      And user clicks on the "Services" link
+      And user clicks on the packages link on the services page
+      And user clicks on the "Generate Scheduler URL" button
+      And user clicks on the "Add New Package" button
+      And user waits for "3" seconds
 
   Scenario: TC_001
     When user types "3 Aylik Paket" to the name input on the add package page
