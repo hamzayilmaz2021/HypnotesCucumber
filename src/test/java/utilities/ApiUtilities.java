@@ -10,12 +10,8 @@ public class ApiUtilities {
 
     public static Response response                  =  null; // durum, cookie, hız, json cevap...
     public static RequestSpecification specification =  new RequestSpecBuilder().
-                                                            addCookie(new Cookie.Builder("PHPSESSID", "vuc0mmf8rhcr5tglu5tkr86lr8").build()).
+                                                            addCookie(new Cookie.Builder("PHPSESSID", "mdvtdholhjdokro81qbonek3i4").build()).
                                                             setBaseUri("https://test.hypnotes.net/api").
                                                             setRelaxedHTTPSValidation().
                                                             build();
-
-    //bana /promoCode/getCoupons sayfasını getir
-    //////// Hazır Methodlar
-    // PHPSESSID=vuc0mmf8rhcr5tglu5tkr86lr8
 }
