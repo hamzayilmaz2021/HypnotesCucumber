@@ -23,56 +23,40 @@ package stepdefinitions;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.restassured.RestAssured;
-import io.restassured.config.DecoderConfig;
-import io.restassured.http.ContentType;
+import io.cucumber.messages.internal.com.google.protobuf.Api;
 import org.junit.Assert;
 import utilities.ApiUtilities;
+import utilities.DataTableUtilities;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
 
 public class API_US121_SD {
 
     @Given("user connects to the {string} api")
     public void userConnectsToTheApi(String endPoint, DataTable dataTable) {
+        Map<String, String> data = DataTableUtilities.getMapFromDataTable(dataTable);
 
-        Map<String, String> zorunluAlanlar = dataTable.asMaps().get(0); // username = hamza & password = 1234 & bilgi = asdf & key = value
-        System.out.println(zorunluAlanlar);
+        ApiUtilities.addFormParams(data);
+        ApiUtilities.connectWithPostMethod(endPoint);
 
-        ApiUtilities.response = given().
-                contentType(ContentType.URLENC.withCharset("UTF-8")). // UTF-8 yardımıyla türkçe karakter tanımı ekledik
-                spec(ApiUtilities.specification).
-                formParams(zorunluAlanlar).
-                post(endPoint);
-
-        ApiUtilities.response.prettyPrint();
+        //ApiUtilities.connectWithPostMethodFormParams(endPoint, data);
     }
 
     @Then("user verifies the status code of the response is {string}")
     public void userVerifiesTheStatusCodeOfTheResponseIs(String statusCode) {
         int currentStatusCode = ApiUtilities.response.statusCode();
 
-        Assert.assertEquals(Integer.parseInt(statusCode) ,currentStatusCode);
-
+        ApiUtilities.verifyStatusCode(currentStatusCode);
     }
 
     @Then("user verifies the api response has mandatory fields in array")
     public void userVerifiesTheApiResponseHasMandatoryFieldsInArray(DataTable dataTable) {
 
-        List<String> zorunluAlanlar = dataTable.asList(); // id, code, startsAt... [Object, Object, Object]
+        List<String> fields = dataTable.asList(); // id, code, startsAt... [Object, Object, Object]
 
-        List<LinkedHashMap> list = ApiUtilities.response.jsonPath().get("$");
-
-        for(LinkedHashMap o : list){
-
-            for(String field : zorunluAlanlar){
-                Assert.assertTrue( o.get(field) != null );
-            }
-        }
+        ApiUtilities.checkFieldsInArray(fields);
 
     }
 }
