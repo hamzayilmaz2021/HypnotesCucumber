@@ -23,6 +23,16 @@ public class ApiUtilities {
                                                             setRelaxedHTTPSValidation().
                                                             build();
 
+    //Cookie ekleme
+    public static void addCookie(String key, String value){
+        specification.cookie(key, value);
+    }
+
+    //Cookie'ler ekleme
+    public static void addCookies(Map<String, String> map){
+        specification.cookies(map);
+    }
+
     // Status code doğrulaması yapar
     public static void verifyStatusCode(int statusCode){
         Assert.assertEquals(statusCode, response.getStatusCode());
@@ -89,6 +99,8 @@ public class ApiUtilities {
                 contentType(ContentType.URLENC.withCharset("UTF-8")).
                 spec(specification).
                 post(endPoint);
+
+        response.prettyPrint();
     }
 
     // Kullanıcı istediği endpoint'e get tipinde bağlanabilecek
@@ -144,6 +156,5 @@ public class ApiUtilities {
             Assert.assertTrue(ApiUtilities.response.jsonPath().get(field) != null);
         }
     }
-
 
 }

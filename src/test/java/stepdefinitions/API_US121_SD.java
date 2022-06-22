@@ -26,8 +26,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.messages.internal.com.google.protobuf.Api;
 import org.junit.Assert;
 import utilities.ApiUtilities;
+import utilities.BrowserUtilities;
 import utilities.DataTableUtilities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +41,19 @@ public class API_US121_SD {
     public void userConnectsToTheApi(String endPoint, DataTable dataTable) {
         Map<String, String> data = DataTableUtilities.getMapFromDataTable(dataTable);
 
-        ApiUtilities.addFormParams(data);
+        Map<String, String> newData = new HashMap<>();
+        for(String s : data.keySet()){
+            String value = data.get(s);
+            if( value.equals("precondition") ){
+                String veri = BrowserUtilities.readDataFromIdsFile(s);
+                newData.put(s, veri);
+            }else{
+                newData.put(s, value);
+            }
+        }
+
+
+        ApiUtilities.addFormParams(newData);
         ApiUtilities.connectWithPostMethod(endPoint);
 
         //ApiUtilities.connectWithPostMethodFormParams(endPoint, data);

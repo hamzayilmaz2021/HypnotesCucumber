@@ -8,6 +8,8 @@ import utilities.DataTableUtilities;
 
 import java.util.List;
 
+import static io.restassured.RestAssured.given;
+
 public class API_US120_SD {
 
     @Then("user verifies the api response has mandatory fields")
