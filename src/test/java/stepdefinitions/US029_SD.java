@@ -7,12 +7,14 @@ import org.openqa.selenium.WebElement;
 import pages.TherapistRegisterPage;
 import utilities.BrowserUtilities;
 import utilities.Driver;
+import utilities.Log4j;
 
 public class US029_SD {
     TherapistRegisterPage page = new TherapistRegisterPage();
     @When("user types {string} to the fullname input")
     public void userTypesToTheFullnameInput(String arg0) {
         page.nameInput.sendKeys(arg0); //
+
     }
 
     @When("user types {string} to the email input")

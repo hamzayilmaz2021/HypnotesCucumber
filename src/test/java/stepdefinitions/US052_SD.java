@@ -11,6 +11,7 @@ import pages.AddClientPage;
 import pages.DashboardPage;
 import utilities.BrowserUtilities;
 import utilities.Driver;
+import utilities.Log4j;
 
 public class US052_SD {
 
@@ -22,6 +23,7 @@ public class US052_SD {
         String[] data       = dataString.split(",");            // Hamza, Yılmaz  => ["Hamza", "Yılmaz"];
         String[] inputNames = inputString.split(",");           // name,surname  => ["name", "surname"];
 
+        Log4j.info(dataString + " verileri yardımıyla kullanıcı kaydı oluşturulmaya çalışılıyor.");
         // for döngüsü yardımıyla inputları bul, inputun içerisine gerekli datayı yine arrayden alarak ekle
 
         for(int i = 0; i < inputNames.length; i++){
@@ -40,6 +42,8 @@ public class US052_SD {
             }
 
         }
+
+        Log4j.info(dataString + " verileri yardımıyla kullanıcı kaydı oluşturuldu.");
 
         // dosya eklerken :  System.getProperty("user.dir") + src/test/resources/images/resim.jpg
     }
